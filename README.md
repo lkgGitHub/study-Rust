@@ -9,6 +9,9 @@ study Rust note
 rustup update
 rustup.exe update
 rustc --version
+
+# 卸载
+rustup self uninstall
 ```
 
 # 问题一： error: linker `link.exe` not found
