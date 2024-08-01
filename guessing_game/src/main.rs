@@ -8,7 +8,7 @@ fn main() {
     // Rng 是一个 trait
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
-    //  loop /luːp/ 环形
+    //  loop /luːp/ 环形 loop 关键字创建了一个无限循环。
     loop {
         println!("Please input your guess.");
         // :: 语法表明 new 是 String 类型的一个关联函数（associated function）
@@ -21,15 +21,19 @@ fn main() {
         io::stdin().read_line(&mut guess).
             expect("Failed to read line");
 
+        // Rust 允许用一个新值来隐藏 （Shadowing） guess 之前的值
+        // guess 后面的冒号（:）告诉 Rust 我们指定了变量的类型。
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
-            Err(_) => continue
+            Err(_) => continue // _ 是一个通配符值
         };
 
         // {} 是预留在特定位置的占位符
         println!("You guessed:{}", guess);
 
+        // cmp 方法用来比较两个值并可以在任何可比较的值上调用
         match guess.cmp(&secret_number) {
+            // Ordering 也是一个枚举。成员是 Less、Greater 和 Equal
             Ordering::Less => println!("Too small!"),
             Ordering::Equal => {
                 println!("You win!");
